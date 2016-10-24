@@ -17,8 +17,11 @@ func main() {
 		os.Exit(1)
 	}
 	first = first[1:]
-	args := []string{first}
-	args = append(args, rest...)
+	args := []string{}
+	if len(first) > 0 {
+		args = append(args, first)
+		args = append(args, rest...)
+	}
 	cmd := exec.Command("git", args...)
 
 	wg := sync.WaitGroup{}
